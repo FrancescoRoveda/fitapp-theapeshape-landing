@@ -1,6 +1,46 @@
 <script lang="ts">
-  const maleAppUrl = import.meta.env.PUBLIC_MALE_APP_URL || 'https://app.theapeshape.com';
+  const maleAppUrl = import.meta.env.PUBLIC_MALE_APP_URL || 'https://theapeshape.com';
   const femaleAppUrl = import.meta.env.PUBLIC_FEMALE_APP_URL || 'https://donna.theapeshape.com';
+
+  let isWaitlistOpen = false;
+  let waitlistSubmitted = false;
+  let waitlistName = '';
+  let waitlistEmail = '';
+  let gdprConsent = false;
+
+  function openWaitlistModal() {
+    isWaitlistOpen = true;
+    waitlistSubmitted = false;
+  }
+
+  function closeWaitlistModal() {
+    isWaitlistOpen = false;
+  }
+
+  function submitWaitlist(event: SubmitEvent) {
+    event.preventDefault();
+
+    if (!waitlistName.trim() || !waitlistEmail.trim() || !gdprConsent) {
+      return;
+    }
+
+    waitlistSubmitted = true;
+    waitlistName = '';
+    waitlistEmail = '';
+    gdprConsent = false;
+  }
+
+  function handleModalKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape' && isWaitlistOpen) {
+      closeWaitlistModal();
+    }
+  }
+
+  function handleModalBackdropClick(event: MouseEvent) {
+    if (event.target === event.currentTarget) {
+      closeWaitlistModal();
+    }
+  }
 
   const features = [
     {
@@ -41,6 +81,8 @@
   />
 </svelte:head>
 
+<svelte:window onkeydown={handleModalKeydown} />
+
 <main class="relative isolate min-h-screen overflow-hidden bg-ape-dark text-white">
   <div class="noise pointer-events-none absolute inset-0 -z-20"></div>
   <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60rem] bg-[radial-gradient(circle_at_center,rgba(139,209,10,0.15),transparent_40rem)]"></div>
@@ -50,26 +92,26 @@
 
     <!-- Header -->
     <header class="relative z-20 flex flex-col items-center text-center">
-      <img class="h-10 w-auto sm:h-12" src="/fitup-logo.png" alt="FITUP" />
-      <p class="mt-2 text-xs font-black uppercase tracking-[0.52em] text-white/70 sm:text-sm">Coaching System</p>
-      <div class="mt-4 flex flex-col items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-ape-green sm:flex-row sm:text-xs">
+      <img class="motion-reveal h-10 w-auto sm:h-12" src="/fitup-logo.png" alt="FITUP" />
+      <p class="motion-reveal mt-2 text-xs font-black uppercase tracking-[0.52em] text-white/70 sm:text-sm" style="--delay: 80ms">Coaching System</p>
+      <div class="motion-reveal mt-4 flex flex-col items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-ape-green sm:flex-row sm:text-xs" style="--delay: 140ms">
         <span>Powered by</span>
         <img class="h-7 w-auto opacity-95" src="/theApeShape_LONG_white.svg" alt="The Ape Shape" />
       </div>
 
       <h1 class="mt-7 max-w-[22rem] font-display text-[3.15rem] uppercase leading-[0.88] tracking-wide sm:mt-8 sm:max-w-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
-        <span class="block">Allenati con</span>
-        <span class="block">un sistema</span>
-        <span class="block text-ape-green sm:hidden">che si adatta</span>
-        <span class="block text-ape-green sm:hidden">a te.</span>
-        <span class="hidden text-ape-green sm:block">che si adatta a te.</span>
+        <span class="motion-title-line block" style="--delay: 210ms">Allenati con</span>
+        <span class="motion-title-line block" style="--delay: 290ms">un sistema</span>
+        <span class="motion-title-line block text-ape-green sm:hidden" style="--delay: 370ms">che si adatta</span>
+        <span class="motion-title-line block text-ape-green sm:hidden" style="--delay: 450ms">a te.</span>
+        <span class="motion-title-line hidden text-ape-green sm:block" style="--delay: 370ms">che si adatta a te.</span>
       </h1>
-      <p class="mt-5 max-w-[20rem] text-sm font-medium leading-6 text-white/75 sm:mt-6 sm:max-w-xl sm:text-base">
+      <p class="motion-reveal mt-5 max-w-[20rem] text-sm font-medium leading-6 text-white/75 sm:mt-6 sm:max-w-xl sm:text-base" style="--delay: 520ms">
         Workout, nutrizione e AI coaching<br class="hidden sm:block" /> integrati nella tua esperienza
         <span class="font-semibold text-ape-green">Fitup</span>.
       </p>
 
-      <div class="relative mt-7 h-72 w-full max-w-[22rem] overflow-hidden rounded-[2rem] border border-white/10 bg-black/35 shadow-[0_0_42px_rgba(139,209,10,0.12)] lg:hidden">
+      <div class="mobile-athlete-stage motion-scale-in relative mt-7 h-72 w-full max-w-[22rem] overflow-hidden rounded-[2rem] border border-white/10 bg-black/35 shadow-[0_0_42px_rgba(139,209,10,0.12)] lg:hidden" style="--delay: 620ms">
         <div class="absolute inset-x-6 bottom-0 h-28 rounded-full bg-ape-green/20 blur-3xl"></div>
         <img
           class="absolute top-0 left-[-4%] h-[118%] w-auto max-w-none object-contain object-bottom opacity-95"
@@ -126,8 +168,8 @@
 
       <!-- Features centered between athletes -->
       <div class="relative z-10 mx-auto grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5">
-        {#each features as feature}
-          <article class="flex items-center gap-4 rounded-[1.7rem] border border-white/10 bg-black/58 p-4 text-left shadow-[0_0_38px_rgba(0,0,0,0.28)] backdrop-blur-md transition hover:border-ape-green/50 hover:bg-black/60 sm:rounded-3xl sm:p-5">
+        {#each features as feature, index}
+          <article class="feature-card motion-card flex items-center gap-4 rounded-[1.7rem] border border-white/10 bg-black/58 p-4 text-left shadow-[0_0_38px_rgba(0,0,0,0.28)] backdrop-blur-md transition hover:border-ape-green/50 hover:bg-black/60 sm:rounded-3xl sm:p-5" style={`--delay: ${720 + index * 140}ms; --feature-delay: ${index * 620}ms`}>
             <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-ape-green/10 shadow-[0_0_32px_rgba(139,209,10,0.16)] ring-1 ring-ape-green/30 sm:h-16 sm:w-16">
               <svg
                 class="h-7 w-7 text-ape-green sm:h-8 sm:w-8"
@@ -161,7 +203,8 @@
       <!-- UOMO ─ active -->
       <a
         href={maleAppUrl}
-        class="group relative flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[2rem] bg-[#060806] transition duration-300 hover:-translate-y-1"
+        class="choice-card motion-card group relative flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[2rem] bg-[#060806] transition duration-300 hover:-translate-y-1"
+        style="--delay: 120ms"
       >
         <!-- Border + glow -->
         <div class="pointer-events-none absolute inset-0 z-20 rounded-[2rem] border-2 border-ape-green/65 shadow-[0_0_50px_rgba(139,209,10,0.20),inset_0_0_60px_rgba(139,209,10,0.05)] transition duration-300 group-hover:border-ape-green group-hover:shadow-[0_0_90px_rgba(139,209,10,0.38),inset_0_0_70px_rgba(139,209,10,0.08)]"></div>
@@ -187,7 +230,7 @@
             <p class="mt-2 text-sm font-medium leading-relaxed text-white/65">
               Inizia ora il tuo percorso.<br />Trasforma il tuo impegno in risultati reali.
             </p>
-            <div class="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-ape-green py-5 text-sm font-black uppercase tracking-[0.15em] text-black transition duration-300 group-hover:bg-ape-lime">
+            <div class="cta-shine mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-ape-green py-5 text-sm font-black uppercase tracking-[0.15em] text-black transition duration-300 group-hover:bg-ape-lime">
               Accedi ora <span aria-hidden="true">→</span>
             </div>
           </div>
@@ -195,9 +238,13 @@
       </a>
 
       <!-- DONNA ─ coming soon -->
-      <a
-        href={femaleAppUrl}
-        class="group relative flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[2rem] bg-[#060806] transition duration-300 hover:-translate-y-1"
+      <button
+        type="button"
+        onclick={openWaitlistModal}
+        aria-haspopup="dialog"
+        aria-controls="waitlist-modal"
+        class="choice-card motion-card group relative flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[2rem] bg-[#060806] transition duration-300 hover:-translate-y-1"
+        style="--delay: 220ms"
       >
         <!-- Dim border -->
         <div class="pointer-events-none absolute inset-0 z-20 rounded-[2rem] border-2 border-white/10 transition duration-300 group-hover:border-white/20"></div>
@@ -227,12 +274,12 @@
             <p class="mt-2 text-sm font-medium leading-relaxed text-white/45">
               Lascia la tua email per avere<br />accesso prioritario.
             </p>
-            <div class="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-white/10 py-5 text-sm font-black uppercase tracking-[0.15em] text-white/55 transition duration-300 group-hover:bg-white/15 group-hover:text-white/75">
+            <div class="cta-shine cta-shine-muted mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-white/10 py-5 text-sm font-black uppercase tracking-[0.15em] text-white/55 transition duration-300 group-hover:bg-white/15 group-hover:text-white/75">
               Iscriviti alla waitlist <span aria-hidden="true">→</span>
             </div>
           </div>
         </div>
-      </a>
+      </button>
 
     </div>
   </section>
@@ -240,8 +287,8 @@
   <!-- ─── TRUST BADGES ─────────────────────────────────── -->
   <section class="mx-auto max-w-7xl border-b border-white/10 px-4 pb-12 pt-4 sm:px-6 lg:px-8">
     <div class="flex flex-col justify-center gap-10 sm:flex-row sm:flex-wrap lg:flex-nowrap lg:gap-8">
-      {#each trust as item}
-        <div class="flex items-center gap-4 lg:w-1/4">
+      {#each trust as item, index}
+        <div class="motion-card flex items-center gap-4 lg:w-1/4" style={`--delay: ${index * 80}ms`}>
           <svg
             class="h-9 w-9 shrink-0 text-ape-green"
             viewBox="0 0 24 24"
@@ -294,4 +341,100 @@
       </div>
     </div>
   </footer>
+
+  {#if isWaitlistOpen}
+    <div
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/78 px-4 py-6 backdrop-blur-md"
+      role="presentation"
+      onclick={handleModalBackdropClick}
+    >
+      <div
+        id="waitlist-modal"
+        class="motion-scale-in relative w-full max-w-lg overflow-hidden rounded-[2rem] border border-ape-green/30 bg-[#070907] p-6 text-left shadow-[0_0_80px_rgba(139,209,10,0.24)] sm:p-8"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="waitlist-title"
+      >
+        <button
+          type="button"
+          class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-xl leading-none text-white/70 transition hover:border-ape-green hover:text-white"
+          aria-label="Chiudi modale"
+          onclick={closeWaitlistModal}
+        >
+          ×
+        </button>
+
+        {#if waitlistSubmitted}
+          <div class="py-8 text-center">
+            <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-ape-green text-3xl font-black text-black">✓</div>
+            <h2 id="waitlist-title" class="mt-6 font-display text-5xl uppercase leading-none text-white">Richiesta ricevuta</h2>
+            <p class="mx-auto mt-4 max-w-sm text-sm leading-6 text-white/65">
+              Grazie. Ti avviseremo appena il percorso donna sarà disponibile.
+            </p>
+            <button
+              type="button"
+              class="mt-8 w-full rounded-2xl bg-ape-green px-6 py-4 text-sm font-black uppercase tracking-[0.15em] text-black transition hover:bg-ape-lime"
+              onclick={closeWaitlistModal}
+            >
+              Chiudi
+            </button>
+          </div>
+        {:else}
+          <p class="text-xs font-black uppercase tracking-[0.28em] text-ape-green">Percorso donna</p>
+          <h2 id="waitlist-title" class="mt-3 font-display text-5xl uppercase leading-none text-white sm:text-6xl">Entra in waitlist</h2>
+          <p class="mt-4 text-sm leading-6 text-white/62">
+            Lascia i tuoi dati per ricevere accesso prioritario appena la versione donna sarà pronta.
+          </p>
+
+          <form class="mt-7 space-y-4" onsubmit={submitWaitlist}>
+            <label class="block">
+              <span class="text-xs font-black uppercase tracking-[0.18em] text-white/72">Nome</span>
+              <input
+                class="mt-2 w-full rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-4 text-white outline-none transition placeholder:text-white/28 focus:border-ape-green focus:ring-2 focus:ring-ape-green/20"
+                name="name"
+                autocomplete="name"
+                placeholder="Il tuo nome"
+                required
+                bind:value={waitlistName}
+              />
+            </label>
+
+            <label class="block">
+              <span class="text-xs font-black uppercase tracking-[0.18em] text-white/72">Email</span>
+              <input
+                class="mt-2 w-full rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-4 text-white outline-none transition placeholder:text-white/28 focus:border-ape-green focus:ring-2 focus:ring-ape-green/20"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="nome@email.com"
+                required
+                bind:value={waitlistEmail}
+              />
+            </label>
+
+            <label class="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm leading-5 text-white/65">
+              <input
+                class="mt-1 h-5 w-5 rounded border-white/20 bg-black text-ape-green accent-ape-green"
+                name="gdprConsent"
+                type="checkbox"
+                required
+                bind:checked={gdprConsent}
+              />
+              <span>
+                Acconsento al trattamento dei miei dati personali ai sensi del GDPR per essere ricontattata sul percorso donna FITUP Coaching System.
+              </span>
+            </label>
+
+            <button
+              type="submit"
+              class="cta-shine w-full rounded-2xl bg-ape-green px-6 py-5 text-sm font-black uppercase tracking-[0.15em] text-black transition hover:bg-ape-lime disabled:cursor-not-allowed disabled:opacity-45"
+              disabled={!waitlistName.trim() || !waitlistEmail.trim() || !gdprConsent}
+            >
+              Invia richiesta <span aria-hidden="true">→</span>
+            </button>
+          </form>
+        {/if}
+      </div>
+    </div>
+  {/if}
 </main>

@@ -28,3 +28,220 @@ body {
   background-size: 72px 72px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent 78%);
 }
+
+.motion-reveal,
+.motion-title-line,
+.motion-card,
+.motion-scale-in {
+  animation-fill-mode: backwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+.motion-reveal {
+  animation-name: reveal-up;
+  animation-duration: 760ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-title-line {
+  animation-name: title-rise;
+  animation-duration: 820ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-scale-in {
+  animation-name: scale-in;
+  animation-duration: 850ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-card {
+  animation-name: reveal-card;
+  animation-duration: 760ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-athlete-stage {
+  isolation: isolate;
+}
+
+.mobile-athlete-stage::after,
+.feature-card::before,
+.choice-card::before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.mobile-athlete-stage::after {
+  background: radial-gradient(circle at 50% 48%, rgba(139, 209, 10, 0.14), transparent 56%);
+  animation: breathe-glow 4.8s ease-in-out infinite;
+  z-index: -1;
+}
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 0%, rgba(139, 209, 10, 0.13) 48%, transparent 72%);
+  opacity: 0;
+  transform: translateX(-80%);
+  animation: soft-sweep 5.8s ease-in-out infinite;
+  animation-delay: calc(var(--feature-delay, 0ms) + 1200ms);
+}
+
+.feature-card svg {
+  animation: icon-breathe 3.8s ease-in-out infinite;
+  animation-delay: var(--feature-delay, 0ms);
+}
+
+.choice-card {
+  position: relative;
+}
+
+.choice-card::before {
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(139, 209, 10, 0.08), 0 0 60px rgba(139, 209, 10, 0.08);
+  opacity: 0.7;
+  animation: card-glow 4.6s ease-in-out infinite;
+}
+
+.cta-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.4) 44%, transparent 68%);
+  transform: translateX(-130%);
+  animation: cta-shine 3.6s ease-in-out infinite;
+}
+
+.cta-shine-muted::after {
+  background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.18) 44%, transparent 68%);
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes title-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.22em, 0) scaleY(0.96);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scaleY(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes reveal-card {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes breathe-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes soft-sweep {
+  0%,
+  46%,
+  100% {
+    opacity: 0;
+    transform: translateX(-80%);
+  }
+  58% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 0;
+    transform: translateX(90%);
+  }
+}
+
+@keyframes icon-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(139, 209, 10, 0));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 8px rgba(139, 209, 10, 0.36));
+  }
+}
+
+@keyframes card-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes cta-shine {
+  0%,
+  42%,
+  100% {
+    transform: translateX(-130%);
+  }
+  62% {
+    transform: translateX(130%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
