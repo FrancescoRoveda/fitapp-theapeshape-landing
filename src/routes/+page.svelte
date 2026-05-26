@@ -6,12 +6,12 @@
     {
       title: 'Allenamenti personalizzati',
       text: 'Programmi su misura in base a te.',
-      icon: ['M4 12h16', 'M7 8v8', 'M17 8v8', 'M2 10v4', 'M22 10v4']
+      icon: ['M5 9v6', 'M8 7v10', 'M16 7v10', 'M19 9v6', 'M8 12h8']
     },
     {
       title: 'Nutrizione su misura',
       text: 'Piani alimentari personalizzati per i tuoi obiettivi.',
-      icon: ['M7 3v18', 'M4 3v6a3 3 0 0 0 6 0V3', 'M17 3v18', 'M17 3c2.2 1.6 3 3.9 3 7v1h-3']
+      icon: ['M6 3v18', 'M3 3v6a3 3 0 0 0 6 0V3', 'M14 3v18', 'M14 3c3 2 4.5 4.7 4.5 8v1H14']
     },
     {
       title: 'AI Coach 24/7',
@@ -21,7 +21,7 @@
     {
       title: 'Risultati misurabili',
       text: 'Traccia i progressi e raggiungi i tuoi obiettivi.',
-      icon: ['M4 19h16', 'M7 16v-5', 'M12 16V7', 'M17 16v-8', 'M6 10l4-4 4 3 4-6']
+      icon: ['M4 19h16', 'M7 16v-4', 'M12 16V9', 'M17 16V7', 'M6 10l4-4 4 3 4-6']
     }
   ];
 
@@ -46,7 +46,7 @@
   <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60rem] bg-[radial-gradient(circle_at_center,rgba(139,209,10,0.15),transparent_40rem)]"></div>
 
   <!-- ─── HERO ─────────────────────────────────────────── -->
-  <section class="relative mx-auto flex min-h-screen w-full flex-col px-4 pt-12 pb-8 sm:px-6 lg:px-10 2xl:px-14">
+  <section class="relative mx-auto flex w-full flex-col px-4 pb-8 pt-8 sm:px-6 sm:pt-12 lg:min-h-screen lg:px-10 2xl:px-14">
 
     <!-- Header -->
     <header class="relative z-20 flex flex-col items-center text-center">
@@ -57,22 +57,42 @@
         <img class="h-7 w-auto opacity-95" src="/theApeShape_LONG_white.svg" alt="The Ape Shape" />
       </div>
 
-      <h1 class="mt-8 max-w-4xl font-display text-5xl uppercase leading-[0.9] tracking-wide sm:text-6xl lg:text-7xl xl:text-8xl">
-        Allenati con<br class="hidden sm:block" /> un sistema<br />
-        <span class="text-ape-green">che si adatta a te.</span>
+      <h1 class="mt-7 max-w-[22rem] font-display text-[3.15rem] uppercase leading-[0.88] tracking-wide sm:mt-8 sm:max-w-4xl sm:text-6xl lg:text-7xl xl:text-8xl">
+        <span class="block">Allenati con</span>
+        <span class="block">un sistema</span>
+        <span class="block text-ape-green sm:hidden">che si adatta</span>
+        <span class="block text-ape-green sm:hidden">a te.</span>
+        <span class="hidden text-ape-green sm:block">che si adatta a te.</span>
       </h1>
-      <p class="mt-6 max-w-xl text-sm font-medium text-white/75 sm:text-base">
+      <p class="mt-5 max-w-[20rem] text-sm font-medium leading-6 text-white/75 sm:mt-6 sm:max-w-xl sm:text-base">
         Workout, nutrizione e AI coaching<br class="hidden sm:block" /> integrati nella tua esperienza
         <span class="font-semibold text-ape-green">Fitup</span>.
       </p>
+
+      <div class="relative mt-7 h-72 w-full max-w-[22rem] overflow-hidden rounded-[2rem] border border-white/10 bg-black/35 shadow-[0_0_42px_rgba(139,209,10,0.12)] lg:hidden">
+        <div class="absolute inset-x-6 bottom-0 h-28 rounded-full bg-ape-green/20 blur-3xl"></div>
+        <img
+          class="absolute top-0 left-[-4%] h-[118%] w-auto max-w-none object-contain object-bottom opacity-95"
+          src="/athlete-male.png"
+          alt="Atleta maschile"
+        />
+        <img
+          class="absolute top-0 right-[-4%] h-[118%] w-auto max-w-none object-contain object-bottom opacity-95"
+          src="/athlete-female.png"
+          alt="Atleta femminile"
+        />
+        <div class="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ape-dark via-ape-dark/72 to-transparent"></div>
+        <div class="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-ape-dark to-transparent"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-ape-dark to-transparent"></div>
+      </div>
     </header>
 
     <!-- Athletes + Features -->
-    <div class="relative mt-16 flex flex-1 items-center pb-4 lg:mt-20">
+    <div class="relative mt-7 flex flex-1 items-center pb-4 lg:mt-20">
 
       <!-- Male athlete -->
       <div
-        class="pointer-events-none absolute -left-16 bottom-0 z-0 h-[460px] w-[340px] sm:-left-10 sm:h-[540px] sm:w-[400px] lg:-left-24 lg:h-[620px] lg:w-[460px] xl:-left-36 xl:h-[700px] xl:w-[520px]"
+        class="pointer-events-none absolute -left-16 bottom-0 z-0 hidden h-[460px] w-[340px] sm:-left-10 sm:h-[540px] sm:w-[400px] lg:block lg:-left-24 lg:h-[620px] lg:w-[460px] xl:-left-36 xl:h-[700px] xl:w-[520px]"
         style="-webkit-mask-image:linear-gradient(to top,transparent 0%,black 18%);mask-image:linear-gradient(to top,transparent 0%,black 18%);"
       >
         <div
@@ -89,7 +109,7 @@
 
       <!-- Female athlete -->
       <div
-        class="pointer-events-none absolute -right-16 bottom-0 z-0 h-[460px] w-[340px] sm:-right-10 sm:h-[540px] sm:w-[400px] lg:-right-24 lg:h-[620px] lg:w-[460px] xl:-right-36 xl:h-[700px] xl:w-[520px]"
+        class="pointer-events-none absolute -right-16 bottom-0 z-0 hidden h-[460px] w-[340px] sm:-right-10 sm:h-[540px] sm:w-[400px] lg:block lg:-right-24 lg:h-[620px] lg:w-[460px] xl:-right-36 xl:h-[700px] xl:w-[520px]"
         style="-webkit-mask-image:linear-gradient(to top,transparent 0%,black 18%);mask-image:linear-gradient(to top,transparent 0%,black 18%);"
       >
         <div
@@ -107,14 +127,14 @@
       <!-- Features centered between athletes -->
       <div class="relative z-10 mx-auto grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5">
         {#each features as feature}
-          <article class="flex items-center gap-4 rounded-3xl border border-white/10 bg-black/45 p-4 text-left shadow-[0_0_38px_rgba(0,0,0,0.28)] backdrop-blur-md transition hover:border-ape-green/50 hover:bg-black/60 sm:p-5">
-            <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-ape-green/10 shadow-[0_0_32px_rgba(139,209,10,0.16)] ring-1 ring-ape-green/30">
+          <article class="flex items-center gap-4 rounded-[1.7rem] border border-white/10 bg-black/58 p-4 text-left shadow-[0_0_38px_rgba(0,0,0,0.28)] backdrop-blur-md transition hover:border-ape-green/50 hover:bg-black/60 sm:rounded-3xl sm:p-5">
+            <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-ape-green/10 shadow-[0_0_32px_rgba(139,209,10,0.16)] ring-1 ring-ape-green/30 sm:h-16 sm:w-16">
               <svg
-                class="h-8 w-8 text-ape-green"
+                class="h-7 w-7 text-ape-green sm:h-8 sm:w-8"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.85"
+                stroke-width="2.25"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 aria-hidden="true"
