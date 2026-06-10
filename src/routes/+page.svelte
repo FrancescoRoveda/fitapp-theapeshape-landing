@@ -45,31 +45,67 @@
   const features = [
     {
       title: 'Allenamenti personalizzati',
-      text: 'Programmi su misura in base a te.',
+      text: 'Scegli gli esercizi che preferisci, noi costruiamo il percorso ideale.',
       icon: ['M5 9v6', 'M8 7v10', 'M16 7v10', 'M19 9v6', 'M8 12h8']
     },
     {
       title: 'Nutrizione su misura',
-      text: 'Piani alimentari personalizzati per i tuoi obiettivi.',
+      text: 'Gestisci i tuoi macro o affidati ad uno dei nostri nutrizionisti.',
       icon: ['M6 3v18', 'M3 3v6a3 3 0 0 0 6 0V3', 'M14 3v18', 'M14 3c3 2 4.5 4.7 4.5 8v1H14']
     },
     {
       title: 'AI Coach 24/7',
-      text: 'Risposte, consigli e supporto sempre con te.',
+      text: 'Un chatbot dedicato, risponde sulla base di quello che ha imparato stando vicino a noi.',
       icon: ['M5 6h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z', 'M8 11h.01', 'M12 11h.01', 'M16 11h.01']
     },
     {
       title: 'Risultati misurabili',
-      text: 'Traccia i progressi e raggiungi i tuoi obiettivi.',
+      text: 'Monitora ogni progresso attraverso dati, statistiche e grafici intuitivi.',
       icon: ['M4 19h16', 'M7 16v-4', 'M12 16V9', 'M17 16V7', 'M6 10l4-4 4 3 4-6']
     }
   ];
 
   const trust = [
-    { title: 'Sicuro e affidabile', text: 'I tuoi dati sono protetti.', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
-    { title: 'Supporto coach', text: 'Reale. Umano. 24/7.', icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z' },
-    { title: 'Una community', text: 'Che ti spinge oltre.', icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z' },
-    { title: 'Privacy garantita', text: '100% riservato.', icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z' }
+    {
+      title: 'Metodo The Ape Shape',
+      text: 'Allenamento e alimentazione integrati in un unico percorso.',
+      icon: 'ape'
+    },
+    {
+      title: 'Assistenza intelligente',
+      text: 'Risposte rapide alle tue domande quotidiane.',
+      icon: [
+        'M4.5 13v-1a7.5 7.5 0 0 1 15 0v1',
+        'M6.5 12H5a2 2 0 0 0-2 2v2.25a2 2 0 0 0 2 2h1.5V12Z',
+        'M17.5 12H19a2 2 0 0 1 2 2v2.25a2 2 0 0 1-2 2h-1.5V12Z',
+        'M17.5 18.25a4 4 0 0 1-4 4h-2',
+        'M9 14.5h.01',
+        'M12 14.5h.01',
+        'M15 14.5h.01'
+      ]
+    },
+    {
+      title: 'Fitup community',
+      text: 'Condividi il tuo percorso con chi ha il tuo stesso obiettivo.',
+      icon: [
+        'M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z',
+        'M5.5 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z',
+        'M18.5 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z',
+        'M6.5 21a5.5 5.5 0 0 1 11 0',
+        'M2 18.5a4.5 4.5 0 0 1 6-4.25',
+        'M16 14.25a4.5 4.5 0 0 1 6 4.25'
+      ]
+    },
+    {
+      title: 'Privacy garantita',
+      text: 'I tuoi dati e i tuoi progressi restano sempre protetti.',
+      icon: [
+        'M7 10.5V7a5 5 0 0 1 10 0v3.5',
+        'M5.5 10.5h13A2.5 2.5 0 0 1 21 13v6a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 19v-6a2.5 2.5 0 0 1 2.5-2.5Z',
+        'M12 15.25h.01',
+        'M12 16.5V18'
+      ]
+    }
   ];
 </script>
 
@@ -107,8 +143,8 @@
         <span class="motion-title-line hidden text-ape-green sm:block" style="--delay: 370ms">che si adatta a te.</span>
       </h1>
       <p class="motion-reveal mt-5 max-w-[20rem] text-sm font-medium leading-6 text-white/75 sm:mt-6 sm:max-w-xl sm:text-base" style="--delay: 520ms">
-        Workout, nutrizione e AI coaching<br class="hidden sm:block" /> integrati nella tua esperienza
-        <span class="font-semibold text-ape-green">Fitup</span>.
+        Un unico sistema che ti accompagna nel percorso di trasformazione fisica attraverso allenamento, nutrizione, supporto dedicato e analisi costante dei tuoi progressi, al costo di integrati nella tua esperienza
+        <span class="font-semibold text-ape-green">1 euro al giorno</span>.
       </p>
 
       <div class="mobile-athlete-stage motion-scale-in relative mt-7 h-72 w-full max-w-[22rem] overflow-hidden rounded-[2rem] border border-white/10 bg-black/35 shadow-[0_0_42px_rgba(139,209,10,0.12)] lg:hidden" style="--delay: 620ms">
@@ -289,18 +325,24 @@
     <div class="flex flex-col justify-center gap-10 sm:flex-row sm:flex-wrap lg:flex-nowrap lg:gap-8">
       {#each trust as item, index}
         <div class="motion-card flex items-center gap-4 lg:w-1/4" style={`--delay: ${index * 80}ms`}>
-          <svg
-            class="h-9 w-9 shrink-0 text-ape-green"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d={item.icon} />
-          </svg>
+          {#if item.icon === 'ape'}
+            <span class="h-11 w-11 shrink-0 bg-ape-green [mask:url('/theApeShape_white.svg')_center_top/7.75rem_auto_no-repeat] [-webkit-mask:url('/theApeShape_white.svg')_center_top/7.75rem_auto_no-repeat]" aria-hidden="true"></span>
+          {:else}
+            <svg
+              class="h-11 w-11 shrink-0 text-ape-green"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.05"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              {#each item.icon as path}
+                <path d={path} />
+              {/each}
+            </svg>
+          {/if}
           <div>
             <span class="block text-xs font-black uppercase tracking-wider text-white">{item.title}</span>
             <span class="mt-1 block text-[11px] font-medium text-white/55">{item.text}</span>
@@ -319,8 +361,9 @@
     </div>
 
     <div class="text-[11px] font-medium leading-relaxed text-white/45 lg:w-1/3 lg:text-center">
-      FITUP Coaching System è disponibile<br />nelle palestre FITUP.<br />
-      Un unico sistema. <span class="text-ape-green">Infiniti risultati.</span>
+      FITUP Coaching System è disponibile nelle palestre FITUP.<br />
+      Ci prendiamo cura del tuo percorso di allenamento e nutrizione. <br />
+      <span class="text-ape-green">A partire da 1€ al giorno.</span>
     </div>
 
     <div class="flex flex-col items-center gap-5 lg:w-1/3 lg:items-end">
